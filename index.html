@@ -3,557 +3,364 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Анастасия Филимонова | Операционный директор</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Дашборд и Scrum-доска</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         :root {
-            --bg-color: #FDFBF7; 
-            --text-main: #1A1A1A; 
-            --text-muted: #5A5A5A; 
-            --accent: #A68A64; 
-            --line-color: #E6E1D6; 
-        }
-
-        /* УВЕЛИЧЕННЫЙ БАЗОВЫЙ ШРИФТ */
-        html {
-            font-size: 18px; /* Увеличено с 16px */
+            --bg-body: #FAFAFC;
+            --text-main: #2A2D34;
+            --text-muted: #8E929C;
+            --card-bg: #FFFFFF;
+            --border-color: #F0F0F5;
         }
 
         body {
             font-family: 'Manrope', sans-serif;
-            background-color: var(--bg-color);
+            background-color: var(--bg-body);
             color: var(--text-main);
             margin: 0;
-            padding: 0;
-            line-height: 1.8;
-            font-weight: 300;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        .wrapper {
-            max-width: 1000px; /* Немного расширили контейнер под крупный шрифт */
-            margin: 0 auto;
-            padding: 100px 20px;
-            animation: fadeIn 1.5s ease-out;
-        }
-
-        /* Типографика */
-        h1, h2, h3, h4, summary, .serif {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 500;
-        }
-
-        h1 {
-            font-size: 4.2rem; /* Увеличено */
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            margin: 30px 0 10px;
-            text-align: center;
-            color: var(--text-main);
-            line-height: 1.1;
-        }
-
-        .subtitle {
-            text-align: center;
-            font-size: 1rem; /* Увеличено */
-            text-transform: uppercase;
-            letter-spacing: 0.25em;
-            color: var(--accent);
-            margin-bottom: 60px;
-            font-weight: 500;
-        }
-
-        /* Шапка и фото */
-        header {
+            padding: 40px 20px;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 100px;
-            position: relative;
-        }
-
-        header::after {
-            content: '';
-            position: absolute;
-            bottom: -50px;
-            width: 1px;
-            height: 80px;
-            background-color: var(--accent);
-        }
-
-        .photo-container {
-            width: 280px; /* Увеличено */
-            height: 280px;
-            border-radius: 50%;
-            padding: 12px;
-            border: 1px solid var(--accent);
-            position: relative;
-            box-sizing: border-box;
-        }
-
-        .photo-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 50%;
-            filter: contrast(1.05) saturate(0.95);
-        }
-
-        /* Контакты */
-        .contacts {
-            display: flex;
-            gap: 40px;
-            margin-top: 20px;
-            flex-wrap: wrap;
             justify-content: center;
         }
 
-        .contacts a {
-            text-decoration: none;
-            color: var(--text-main);
-            font-size: 1.1rem; /* Увеличено */
-            letter-spacing: 0.05em;
-            position: relative;
-            padding-bottom: 5px;
-            transition: color 0.4s ease;
-        }
-
-        .contacts a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
+        .container {
+            max-width: 1300px;
             width: 100%;
-            height: 1px;
-            background-color: var(--accent);
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
-        .contacts a:hover::after {
-            transform: scaleX(1);
-            transform-origin: left;
+        /* --- ЭКРАН ДАШБОРДА --- */
+        .dashboard-view {
+            display: block;
+            animation: fadeIn 0.4s ease-out;
         }
 
-        /* Секции */
-        section {
-            margin-bottom: 110px;
+        .grid-dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
         }
 
-        h3.section-title {
-            font-size: 3rem; /* Увеличено */
-            text-align: center;
-            margin-bottom: 60px;
-            color: var(--text-main);
-            position: relative;
-            font-style: italic;
-        }
-
-        /* Раскрывающиеся списки (Обо мне) */
-        .accordion-wrapper {
-            border-top: 1px solid var(--line-color);
-        }
-
-        details.main-details {
-            border-bottom: 1px solid var(--line-color);
-            padding: 30px 0;
-            transition: all 0.3s ease;
-        }
-
-        details.main-details > summary {
-            font-size: 1.8rem; /* Увеличено */
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
             cursor: pointer;
-            list-style: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.06);
+            border-color: #E2E2E9;
+        }
+
+        .icon-box {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFF;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--text-main);
+        }
+
+        /* Градиенты иконок (максимально приближено к картинке) */
+        .bg-purple-dark { background: linear-gradient(135deg, #6214B8, #9E45E8); }
+        .bg-blue { background: linear-gradient(135deg, #3B82F6, #7CB0FC); }
+        .bg-yellow { background: linear-gradient(135deg, #F59E0B, #FCD34D); }
+        .bg-lime { background: linear-gradient(135deg, #84CC16, #BEE667); }
+        .bg-cyan { background: linear-gradient(135deg, #0EA5E9, #67E8F9); }
+        .bg-indigo { background: linear-gradient(135deg, #4F46E5, #818CF8); }
+        .bg-orange { background: linear-gradient(135deg, #F97316, #FDBA74); }
+        .bg-green { background: linear-gradient(135deg, #65A30D, #A3E635); }
+        .bg-red { background: linear-gradient(135deg, #EF4444, #FCA5A5); }
+        .bg-purple-light { background: linear-gradient(135deg, #A855F7, #D8B4FE); }
+        .bg-mint { background: linear-gradient(135deg, #10B981, #6EE7B7); }
+        .bg-teal { background: linear-gradient(135deg, #0F766E, #2DD4BF); }
+        .bg-blue-light { background: linear-gradient(135deg, #6366F1, #A5B4FC); }
+        .bg-olive { background: linear-gradient(135deg, #A3E635, #D9F99D); color: #4D7C0F; } /* Желто-зеленый */
+        .bg-pink { background: linear-gradient(135deg, #D946EF, #F9A8D4); }
+        .bg-violet { background: linear-gradient(135deg, #8B5CF6, #C4B5FD); }
+        .bg-magenta { background: linear-gradient(135deg, #BE185D, #F472B6); }
+
+        /* --- ЭКРАН SCRUM-ДОСКИ --- */
+        .scrum-view {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+            height: 85vh;
+        }
+
+        .header-scrum {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-btn {
+            background: #FFF;
+            border: 1px solid var(--border-color);
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 600;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s;
+        }
+
+        .back-btn:hover {
+            background: #F0F0F5;
+        }
+
+        .scrum-title {
+            margin: 0 0 0 20px;
+            font-size: 24px;
+        }
+
+        .scrum-board {
+            display: flex;
+            gap: 20px;
+            height: 100%;
+            overflow-x: auto;
+            padding-bottom: 20px;
+        }
+
+        .scrum-column {
+            background: #F4F5F8;
+            border-radius: 12px;
+            min-width: 300px;
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .column-header {
+            font-weight: 700;
+            margin-bottom: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: var(--text-main);
-            transition: color 0.3s ease;
         }
 
-        details.main-details > summary:hover {
-            color: var(--accent);
-        }
-
-        details > summary::-webkit-details-marker {
-            display: none;
-        }
-
-        details.main-details > summary::after {
-            content: '+';
-            font-family: 'Manrope', sans-serif;
-            font-size: 2rem;
-            font-weight: 300;
-            color: var(--accent);
-            transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        details[open].main-details > summary::after {
-            transform: rotate(45deg);
-        }
-
-        .details-content {
-            padding-top: 30px;
-            padding-bottom: 15px;
+        .task-count {
+            background: #E2E2E9;
             color: var(--text-muted);
-            font-size: 1.15rem; /* Увеличено */
-            animation: slideDown 0.5s ease forwards;
-            opacity: 0;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 13px;
         }
 
-        /* НОВЫЙ БЛОК: Цифры и результаты */
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-        }
-
-        .metric-card {
-            text-align: center;
-            padding: 50px 30px;
-            background: transparent;
-            border: 1px solid var(--line-color);
-            position: relative;
-            transition: transform 0.4s ease;
-        }
-
-        .metric-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .metric-card::before {
-            content: '';
-            position: absolute;
-            top: -1px; left: 50%;
-            transform: translateX(-50%);
-            width: 60px; height: 2px;
-            background-color: var(--accent);
-        }
-
-        .metric-number {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 4.5rem;
-            color: var(--text-main);
-            line-height: 1;
-            margin-bottom: 20px;
-        }
-
-        .metric-desc {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            font-weight: 400;
-        }
-
-        /* Опыт работы */
-        .experience-list {
-            position: relative;
-            padding-left: 50px;
-        }
-
-        .experience-list::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 15px;
-            bottom: 0;
-            width: 1px;
-            background-color: var(--line-color);
-        }
-
-        .job-item {
-            position: relative;
-            margin-bottom: 70px;
-        }
-
-        .job-item::before {
-            content: '';
-            position: absolute;
-            left: -54.5px;
-            top: 8px;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: var(--accent);
-            box-shadow: 0 0 0 5px var(--bg-color);
-        }
-
-        .job-dates {
-            font-size: 0.95rem;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--accent);
-            margin-bottom: 10px;
-            display: block;
-            font-weight: 500;
-        }
-
-        .job-company {
-            font-size: 2.2rem; /* Увеличено */
-            margin: 0 0 10px 0;
-            color: var(--text-main);
-            line-height: 1.2;
-        }
-
-        .job-role {
-            font-weight: 400;
-            color: var(--text-main);
-            margin-bottom: 20px;
-            font-size: 1.25rem; /* Увеличено */
-            font-style: italic;
-        }
-
-        /* Вложенные списки задач (Опыт работы) */
-        details.job-tasks {
-            background: #FFFFFF;
-            border: 1px solid var(--line-color);
-            padding: 15px 25px;
-            border-radius: 4px;
-            margin-top: 20px;
-        }
-
-        details.job-tasks > summary {
-            font-family: 'Manrope', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: var(--accent);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-        }
-
-        details.job-tasks > summary::before {
-            content: '↓';
-            display: inline-block;
-            margin-right: 15px;
-            transition: transform 0.3s ease;
-            font-size: 1.2rem;
-        }
-
-        details[open].job-tasks > summary::before {
-            transform: rotate(180deg);
-        }
-
-        details.job-tasks .job-desc {
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid var(--line-color);
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            animation: slideDown 0.4s ease forwards;
-        }
-
-        .job-desc ul {
-            padding-left: 20px;
-            margin: 0;
-        }
-
-        .job-desc li {
+        .scrum-task {
+            background: var(--card-bg);
+            padding: 16px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
             margin-bottom: 12px;
+            border: 1px solid var(--border-color);
+            cursor: grab;
+            transition: transform 0.2s;
         }
 
-        /* Анимации */
+        .scrum-task:hover {
+            transform: translateY(-2px);
+            border-color: #3B82F6;
+        }
+
+        .task-tag {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .tag-dev { background: #E0E7FF; color: #4338CA; }
+        .tag-design { background: #FCE7F3; color: #BE185D; }
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Адаптивность */
-        @media (max-width: 768px) {
-            html { font-size: 16px; }
-            h1 { font-size: 3rem; }
-            .wrapper { padding: 50px 20px; }
-            .contacts { flex-direction: column; align-items: center; gap: 20px; }
-            .photo-container { width: 220px; height: 220px; }
-            .experience-list { padding-left: 30px; }
-            .job-item::before { left: -34.5px; }
-        }
     </style>
 </head>
 <body>
 
-<div class="wrapper">
-    <header>
-        <div class="photo-container">
-            <img src="photo.jpg" alt="Анастасия Филимонова" [cite: 1]>
-        </div>
-        <h1>Анастасия Филимонова [cite: 1]</h1>
-        <div class="subtitle">Операционный директор &bull; Руководитель проектов [cite: 2]</div>
-        <div class="contacts">
-            <a href="tel:+79623746710">+7 (962) 374-67-10 [cite: 3]</a>
-            <a href="mailto:anastasiya.fil1monova@yandex.ru">anastasiya.fil1monova@yandex.ru [cite: 3]</a>
-            <a href="https://t.me/anastasiya_feel" target="_blank">Telegram: @anastasiya_feel [cite: 3]</a>
-        </div>
-    </header>
+<div class="container">
+    
+    <div id="dashboardView" class="dashboard-view">
+        <div class="grid-dashboard">
+            <div class="card" onclick="openScrum('Дашборд')">
+                <div class="icon-box bg-purple-dark"><i class="fa-solid fa-border-all"></i></div>
+                <div class="card-title">Дашборд</div>
+            </div>
+            <div class="card" onclick="openScrum('Задачи')">
+                <div class="icon-box bg-blue"><i class="fa-solid fa-check"></i></div>
+                <div class="card-title">Задачи</div>
+            </div>
+            <div class="card" onclick="openScrum('Проекты')">
+                <div class="icon-box bg-yellow"><i class="fa-regular fa-folder-open"></i></div>
+                <div class="card-title">Проекты</div>
+            </div>
+            <div class="card" onclick="openScrum('Клиенты')">
+                <div class="icon-box bg-lime"><i class="fa-regular fa-user"></i></div>
+                <div class="card-title">Клиенты</div>
+            </div>
+            <div class="card" onclick="openScrum('Встречи и звонки')">
+                <div class="icon-box bg-cyan"><i class="fa-solid fa-phone-volume"></i></div>
+                <div class="card-title">Встречи и звонки</div>
+            </div>
+            <div class="card" onclick="openScrum('Команда')">
+                <div class="icon-box bg-indigo"><i class="fa-solid fa-user-group"></i></div>
+                <div class="card-title">Команда</div>
+            </div>
 
-    <section>
-        <h3 class="section-title">Professional Profile [cite: 5]</h3>
-        <div class="accordion-wrapper">
-            <details class="main-details">
-                <summary>Обо мне</summary>
-                <div class="details-content">
-                    <p>Руководитель с опытом более 6 лет в операционном управлении, запуске проектов «под ключ» и масштабировании бизнеса[cite: 6]. Сочетаю системное мышление и креативный подход для создания эффективных процессов в проектах на стыке творчества, технологий и сервиса[cite: 8]. Адаптивна к изменениям, работаю в условиях VUCA[cite: 9].</p>
-                    <p>Имею особый интерес к проектам, связанным с гастрономией, созданием продукта и клиентского опыта[cite: 10]. Проживание: Москва - Санкт-Петербург, готова к переезду и командировкам[cite: 4].</p>
+            <div class="card" onclick="openScrum('Счета')">
+                <div class="icon-box bg-orange"><i class="fa-solid fa-sack-dollar"></i></div>
+                <div class="card-title">Счета</div>
+            </div>
+            <div class="card" onclick="openScrum('Доходы')">
+                <div class="icon-box bg-green"><i class="fa-solid fa-arrow-up"></i></div>
+                <div class="card-title">Доходы</div>
+            </div>
+            <div class="card" onclick="openScrum('Расходы')">
+                <div class="icon-box bg-red"><i class="fa-solid fa-arrow-down"></i></div>
+                <div class="card-title">Расходы</div>
+            </div>
+            <div class="card" onclick="openScrum('Подписки')">
+                <div class="icon-box bg-purple-light"><i class="fa-solid fa-rotate-right"></i></div>
+                <div class="card-title">Подписки</div>
+            </div>
+            <div class="card" onclick="openScrum('Оплаты клиентов')">
+                <div class="icon-box bg-mint"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                <div class="card-title">Оплаты клиентов</div>
+            </div>
+            <div class="card" onclick="openScrum('Оплаты з/п')">
+                <div class="icon-box bg-teal"><i class="fa-solid fa-share"></i></div>
+                <div class="card-title">Оплаты з/п</div>
+            </div>
+
+            <div class="card" onclick="openScrum('Услуги')">
+                <div class="icon-box bg-blue-light"><i class="fa-regular fa-clone"></i></div>
+                <div class="card-title">Услуги</div>
+            </div>
+            <div class="card" onclick="openScrum('Портфолио')">
+                <div class="icon-box bg-olive" style="color: white;"><i class="fa-brands fa-windows"></i></div>
+                <div class="card-title">Портфолио</div>
+            </div>
+            <div class="card" onclick="openScrum('Закладки')">
+                <div class="icon-box bg-pink"><i class="fa-regular fa-bookmark"></i></div>
+                <div class="card-title">Закладки</div>
+            </div>
+            <div class="card" onclick="openScrum('Цели')">
+                <div class="icon-box bg-violet"><i class="fa-solid fa-crosshairs"></i></div>
+                <div class="card-title">Цели</div>
+            </div>
+            <div class="card" onclick="openScrum('Калькулятор')">
+                <div class="icon-box bg-magenta"><i class="fa-solid fa-calculator"></i></div>
+                <div class="card-title">Калькулятор</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="scrumView" class="scrum-view">
+        <div class="header-scrum">
+            <button class="back-btn" onclick="closeScrum()">
+                <i class="fa-solid fa-arrow-left"></i> Назад
+            </button>
+            <h2 class="scrum-title" id="scrumTitle">Проектная доска</h2>
+        </div>
+
+        <div class="scrum-board">
+            <div class="scrum-column">
+                <div class="column-header">
+                    <span>К выполнению (To Do)</span>
+                    <span class="task-count">3</span>
                 </div>
-            </details>
-
-            <details class="main-details">
-                <summary>Ключевые компетенции</summary>
-                <div class="details-content">
-                    <ul>
-                        <li>Операционное управление и масштабирование [cite: 98]</li>
-                        <li>Запуск новых продуктов и направлений (от идеи до реализации) [cite: 99]</li>
-                        <li>Управление командами (до 30+ человек) и развитие сотрудников [cite: 99]</li>
-                        <li>Бюджетирование, финконтроль, оптимизация издержек [cite: 99]</li>
-                        <li>Маркетинговая стратегия и управление рекламным бюджетом [cite: 100]</li>
-                        <li>Построение систем и регламентов (CRM, отчетность, документооборот) [cite: 101]</li>
-                    </ul>
+                <div class="scrum-task" draggable="true">
+                    <div class="task-tag tag-dev">Разработка</div>
+                    <div>Интеграция n8n для Telegram-бота</div>
                 </div>
-            </details>
-
-            <details class="main-details">
-                <summary>Образование и навыки</summary>
-                <div class="details-content">
-                    <p><strong>Образование:</strong> Финансовый университет при Правительстве РФ (Москва). Специальность: Экономика и бизнес-технологии / Бизнес-информатика[cite: 91, 92].</p>
-                    <p><strong>Инструменты:</strong> Уверенный пользователь CRM, Google Analytics, Excel, Google Sheets, Trello, Notion, Figma[cite: 106]. Владение Al-инструментами: ChatGPT, Midjourney, Notion Al[cite: 106].</p>
-                    <p><strong>Языки:</strong> Русский (родной), Английский (В1 - Intermediate)[cite: 105].</p>
+                <div class="scrum-task" draggable="true">
+                    <div class="task-tag tag-design">Дизайн</div>
+                    <div>Отрисовать макеты мобильной версии</div>
                 </div>
-            </details>
+                <div class="scrum-task" draggable="true">
+                    <div class="task-tag tag-dev">Разработка</div>
+                    <div>Настроить JSON выражения для парсинга</div>
+                </div>
+            </div>
+
+            <div class="scrum-column">
+                <div class="column-header">
+                    <span>В работе (In Progress)</span>
+                    <span class="task-count">1</span>
+                </div>
+                <div class="scrum-task" draggable="true">
+                    <div class="task-tag tag-dev">Инфраструктура</div>
+                    <div>Оптимизация комиссии платежной системы</div>
+                </div>
+            </div>
+
+            <div class="scrum-column">
+                <div class="column-header">
+                    <span>Готово (Done)</span>
+                    <span class="task-count">2</span>
+                </div>
+                <div class="scrum-task" draggable="true" style="opacity: 0.7;">
+                    <div class="task-tag tag-design">Аналитика</div>
+                    <div>Анализ финансовых таблиц продаж</div>
+                </div>
+                <div class="scrum-task" draggable="true" style="opacity: 0.7;">
+                    <div class="task-tag tag-dev">Разработка</div>
+                    <div>Создание AI агента для проекта "Алиби"</div>
+                </div>
+            </div>
         </div>
-    </section>
+    </div>
 
-    <section>
-        <h3 class="section-title">Numbers & Results [cite: 11]</h3>
-        <div class="metrics-grid">
-            <div class="metric-card">
-                <div class="metric-number">+40%</div>
-                <div class="metric-desc">рост активной клиентской базы (с 6 до 10 тыс.) [cite: 13]</div>
-            </div>
-            <div class="metric-card">
-                <div class="metric-number">40K</div>
-                <div class="metric-desc">подписчиков в Telegram-канале за 6 месяцев [cite: 13]</div>
-            </div>
-            <div class="metric-card">
-                <div class="metric-number">x2</div>
-                <div class="metric-desc">увеличение LTV клиента (с 3 до 6 месяцев) [cite: 15]</div>
-            </div>
-            <div class="metric-card">
-                <div class="metric-number">-27%</div>
-                <div class="metric-desc">сокращение текучести кадров [cite: 20]</div>
-            </div>
-            <div class="metric-card">
-                <div class="metric-number">-15%</div>
-                <div class="metric-desc">оптимизация ФОТ за счет внедрения KPI [cite: 16]</div>
-            </div>
-            <div class="metric-card">
-                <div class="metric-number">3 млн ₽</div>
-                <div class="metric-desc">выручка в первый запуск продукта с нуля [cite: 19]</div>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <h3 class="section-title">Experience [cite: 22]</h3>
-        <div class="experience-list">
-            
-            <div class="job-item">
-                <span class="job-dates">Март 2025 — Настоящее время (1 год) [cite: 23]</span>
-                <h4 class="job-company">Secret Chat от Pauline Cake [cite: 24]</h4>
-                <div class="job-role">Операционный директор / Руководитель проектов [cite: 26]</div>
-                
-                <details class="job-tasks">
-                    <summary>Зона ответственности и задачи</summary>
-                    <div class="job-desc">
-                        <ul>
-                            <li>Выделила проект из головной структуры в независимую единицу, перестроила команду, организовала юридический и бухгалтерский аудит[cite: 30, 32].</li>
-                            <li>Управляю операционной деятельностью команды из 17 человек (разработка, маркетинг, техподдержка, продукт)[cite: 33, 34].</li>
-                            <li>Реализовала запуск приложения в Telegram от идеи до внедрения: анализ рынка, концепция, метрики окупаемости[cite: 37, 38].</li>
-                            <li>Реализовала стратегию привлечения трафика (Reels, UDS-контент, геймификация), запустила Telegram-канал[cite: 42, 43].</li>
-                            <li>Веду учет совместно с бухгалтером, управляю ежемесячным бюджетом 1-2 млн ₽[cite: 46].</li>
-                        </ul>
-                    </div>
-                </details>
-            </div>
-
-            <div class="job-item">
-                <span class="job-dates">Апрель 2024 — Май 2025 (1 год 2 месяца) [cite: 48]</span>
-                <h4 class="job-company">ИП Соколовский А. С. [cite: 49]</h4>
-                <div class="job-role">Руководитель по запуску новых направлений [cite: 50]</div>
-                
-                <details class="job-tasks">
-                    <summary>Зона ответственности и задачи</summary>
-                    <div class="job-desc">
-                        <ul>
-                            <li>Проводила анализ рынка, разрабатывала PR-стратегии для финансовых продуктов[cite: 52, 53].</li>
-                            <li>Управляла рекламным бюджетом до $20 000 в месяц: планирование, реализация и оценка эффективности[cite: 54].</li>
-                            <li>Управляла проектами «под ключ», включая контроль подрядчиков, сметы и документооборот[cite: 55, 56].</li>
-                            <li>Выстроила отдел разработки, переведя процессы в собственное управление[cite: 57, 58].</li>
-                            <li>Работала с инфлюенсерами, внедряла реферальные программы[cite: 61, 62].</li>
-                        </ul>
-                    </div>
-                </details>
-            </div>
-
-            <div class="job-item">
-                <span class="job-dates">Апрель 2024 — Сентябрь 2024 (6 месяцев) [cite: 64]</span>
-                <h4 class="job-company">Институт семейной психологии Инны Мирной [cite: 64]</h4>
-                <div class="job-role">Исполнительный директор (консалтинг) [cite: 65]</div>
-                
-                <details class="job-tasks">
-                    <summary>Зона ответственности и задачи</summary>
-                    <div class="job-desc">
-                        <ul>
-                            <li>Провела анализ текущей ситуации, внедрила систему аналитики и КΡΙ для всех отделов[cite: 69, 71].</li>
-                            <li>Оптимизировала ФОТ на 15%, перевела сотрудников на мотивационную схему, привязанную к результатам[cite: 72].</li>
-                            <li>Пересобрала команду из 15 человек, выстроила прозрачные операционные процессы и регламенты[cite: 74, 75].</li>
-                        </ul>
-                    </div>
-                </details>
-            </div>
-
-            <div class="job-item">
-                <span class="job-dates">Январь 2023 — Май 2024 (1 год 5 месяцев) [cite: 76]</span>
-                <h4 class="job-company">Партнерский запуск в продюсировании [cite: 77]</h4>
-                <div class="job-role">Руководитель проекта (Фриланс) [cite: 77, 78]</div>
-                
-                <details class="job-tasks">
-                    <summary>Зона ответственности и задачи</summary>
-                    <div class="job-desc">
-                        <ul>
-                            <li>Осуществила полный цикл запуска образовательного продукта с нуля[cite: 80, 82].</li>
-                            <li>Собрала и координировала команду из 15 человек[cite: 83].</li>
-                            <li>Изменила стратегию в первые дни продаж, что привело к росту прибыли на 20% и выручке в 3 млн ₽[cite: 84].</li>
-                        </ul>
-                    </div>
-                </details>
-            </div>
-
-            <div class="job-item">
-                <span class="job-dates">2021 — 2023 [cite: 85]</span>
-                <h4 class="job-company">HR-менеджер / Руководитель HR [cite: 85]</h4>
-                <div class="job-role">Различные проекты</div>
-                
-                <details class="job-tasks">
-                    <summary>Зона ответственности и задачи</summary>
-                    <div class="job-desc">
-                        <ul>
-                            <li>Сократила текучесть кадров на 27% за счет внедрения двухэтапного онбординга и формата парт-тайм[cite: 86].</li>
-                            <li>Закрывала сложные позиции (включая удаленный найм прорабов)[cite: 88].</li>
-                            <li>Создавала системы адаптации, мотивации и обучения персонала[cite: 89].</li>
-                        </ul>
-                    </div>
-                </details>
-            </div>
-
-        </div>
-    </section>
 </div>
+
+<script>
+    const dashboard = document.getElementById('dashboardView');
+    const scrumBoard = document.getElementById('scrumView');
+    const scrumTitle = document.getElementById('scrumTitle');
+
+    function openScrum(moduleName) {
+        // Меняем заголовок доски в зависимости от того, куда кликнули
+        scrumTitle.innerText = moduleName + " — Рабочая доска";
+        
+        // Скрываем дашборд и показываем скрам
+        dashboard.style.display = 'none';
+        scrumView.style.display = 'block';
+    }
+
+    function closeScrum() {
+        // Возвращаемся обратно
+        scrumView.style.display = 'none';
+        dashboard.style.display = 'block';
+    }
+</script>
 
 </body>
 </html>
