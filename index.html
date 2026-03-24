@@ -3,315 +3,508 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Филимонова Анастасия — Операционный директор</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Анастасия Филимонова | Операционный директор</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-color: #FDFBF7; /* Теплый, дорогой белый оттенок */
+            --text-main: #1A1A1A; /* Глубокий черный */
+            --text-muted: #5A5A5A; /* Мягкий серый для текста */
+            --accent: #A68A64; /* Приглушенное золото */
+            --line-color: #E6E1D6; /* Цвет деликатных линий */
+        }
+
         body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: #F8F9FA;
-            color: #333333;
-            line-height: 1.6;
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             margin: 0;
-            padding: 40px 20px;
+            padding: 0;
+            line-height: 1.7;
+            font-weight: 300;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-        .container {
-            max-width: 850px;
+
+        .wrapper {
+            max-width: 900px;
             margin: 0 auto;
-            background: #FFFFFF;
-            padding: 50px;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+            padding: 80px 20px;
+            animation: fadeIn 1.5s ease-out;
         }
-        /* Шапка визитки */
-        .header {
-            text-align: center;
-            border-bottom: 1px solid #EBEBEB;
-            padding-bottom: 40px;
-            margin-bottom: 40px;
-        }
-        .profile-photo {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 25px;
-            border: 4px solid #F0F0F0;
-        }
-        h1 {
-            font-size: 32px;
-            margin: 0 0 10px 0;
-            font-weight: 600;
-            color: #1A1A1A;
-            letter-spacing: 1px;
-        }
-        h2 {
-            font-size: 16px;
-            color: #7A8B99;
+
+        /* Типографика */
+        h1, h2, h3, h4, summary, .serif {
+            font-family: 'Cormorant Garamond', serif;
             font-weight: 500;
-            margin: 0 0 25px 0;
-            text-transform: uppercase;
-            letter-spacing: 2px;
         }
+
+        h1 {
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin: 30px 0 10px;
+            text-align: center;
+            color: var(--text-main);
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: var(--accent);
+            margin-bottom: 50px;
+            font-weight: 500;
+        }
+
+        /* Шапка и фото */
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -40px;
+            width: 1px;
+            height: 60px;
+            background-color: var(--accent);
+        }
+
+        .photo-container {
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            padding: 10px;
+            border: 1px solid var(--accent);
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            filter: contrast(1.05) saturate(0.95);
+        }
+
+        /* Контакты */
         .contacts {
             display: flex;
-            justify-content: center;
+            gap: 40px;
+            margin-top: 20px;
             flex-wrap: wrap;
-            gap: 20px;
+            justify-content: center;
         }
+
         .contacts a {
-            color: #4A6984;
             text-decoration: none;
-            font-weight: 500;
-            padding: 8px 16px;
-            background-color: #F8F9FA;
-            border-radius: 20px;
+            color: var(--text-main);
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            position: relative;
+            padding-bottom: 5px;
+            transition: color 0.4s ease;
+        }
+
+        .contacts a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: var(--accent);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .contacts a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* Секции */
+        section {
+            margin-bottom: 90px;
+        }
+
+        h3.section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--text-main);
+            position: relative;
+            font-style: italic;
+        }
+
+        /* Раскрывающиеся списки */
+        .accordion-wrapper {
+            border-top: 1px solid var(--line-color);
+        }
+
+        details {
+            border-bottom: 1px solid var(--line-color);
+            padding: 25px 0;
             transition: all 0.3s ease;
         }
-        .contacts a:hover {
-            background-color: #4A6984;
-            color: #FFFFFF;
-        }
-        /* Основные секции */
-        h3 {
-            font-size: 24px;
-            color: #2C3E50;
-            margin-top: 50px;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-        }
-        h3::before {
-            content: '';
-            display: inline-block;
-            width: 4px;
-            height: 24px;
-            background-color: #C5A880; /* Премиальный золотисто-бежевый акцент */
-            margin-right: 12px;
-            border-radius: 2px;
-        }
-        /* Раскрывающиеся списки (Обо мне) */
-        details {
-            background: #FFFFFF;
-            border: 1px solid #EAEAEA;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            padding: 18px 20px;
-            transition: box-shadow 0.3s ease;
-        }
-        details:hover {
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-        }
+
         summary {
-            font-weight: 600;
-            font-size: 16px;
+            font-size: 1.6rem;
             cursor: pointer;
-            outline: none;
-            color: #2C3E50;
-            list-style: none; /* Убираем стандартный треугольник */
+            list-style: none;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            color: var(--text-main);
+            transition: color 0.3s ease;
         }
+
+        summary:hover {
+            color: var(--accent);
+        }
+
         summary::-webkit-details-marker {
             display: none;
         }
+
         summary::after {
             content: '+';
-            font-size: 20px;
-            color: #C5A880;
+            font-family: 'Manrope', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--accent);
+            transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
         }
+
         details[open] summary::after {
-            content: '−';
+            transform: rotate(45deg);
         }
-        details p, details ul {
-            margin-top: 15px;
-            color: #555;
-            line-height: 1.7;
+
+        .details-content {
+            padding-top: 25px;
+            padding-bottom: 10px;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            animation: slideDown 0.5s ease forwards;
+            opacity: 0;
         }
-        /* Карточки кейсов */
+
+        .details-content p {
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .details-content ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        .details-content li {
+            margin-bottom: 10px;
+        }
+
+        /* Сетка кейсов */
         .cases-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
         }
-        .card {
-            background: #FAFAFA;
-            border: 1px solid #EFEFEF;
-            padding: 25px;
-            border-radius: 12px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        .case-card {
+            padding: 40px;
+            background: #FFFFFF;
+            border: 1px solid var(--line-color);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            position: relative;
+            overflow: hidden;
         }
-        .card:hover {
+
+        .case-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .case-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.03);
         }
-        .card h4 {
-            margin: 0 0 15px 0;
-            font-size: 18px;
-            color: #2C3E50;
+
+        .case-card:hover::before {
+            transform: scaleX(1);
         }
+
+        .case-card h4 {
+            font-size: 1.8rem;
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: var(--text-main);
+            line-height: 1.2;
+        }
+
+        .case-card p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
         /* Опыт работы */
-        .job {
-            margin-bottom: 40px;
-            padding-bottom: 30px;
-            border-bottom: 1px solid #F0F0F0;
+        .experience-list {
+            position: relative;
+            padding-left: 40px;
         }
-        .job:last-child {
-            border-bottom: none;
+
+        .experience-list::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            bottom: 0;
+            width: 1px;
+            background-color: var(--line-color);
         }
-        .job h4 {
-            margin: 0 0 5px 0;
-            font-size: 20px;
-            color: #1A1A1A;
+
+        .job-item {
+            position: relative;
+            margin-bottom: 60px;
         }
-        .job .role {
-            font-weight: 600;
-            color: #4A6984;
-            margin-bottom: 10px;
+
+        .job-item:last-child {
+            margin-bottom: 0;
         }
-        .job .dates {
-            font-size: 13px;
-            color: #888;
-            margin: 0 0 15px 0;
+
+        .job-item::before {
+            content: '';
+            position: absolute;
+            left: -44.5px; /* Выравнивание точки по линии */
+            top: 6px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            box-shadow: 0 0 0 4px var(--bg-color);
+        }
+
+        .job-dates {
+            font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .job ul {
-            padding-left: 20px;
-            color: #444;
-        }
-        .job li {
+            letter-spacing: 0.15em;
+            color: var(--accent);
             margin-bottom: 10px;
+            display: block;
+            font-weight: 500;
         }
-        @media (max-width: 600px) {
-            .container { padding: 30px 20px; }
-            .profile-photo { width: 140px; height: 140px; }
-            h1 { font-size: 26px; }
+
+        .job-company {
+            font-size: 2rem;
+            margin: 0 0 10px 0;
+            color: var(--text-main);
+            line-height: 1.2;
+        }
+
+        .job-role {
+            font-weight: 400;
+            color: var(--text-main);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+
+        .job-desc {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        .job-desc ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        .job-desc li {
+            margin-bottom: 12px;
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .wrapper { padding: 50px 20px; }
+            .cases-grid { grid-template-columns: 1fr; }
+            .contacts { flex-direction: column; align-items: center; gap: 20px; }
+            .photo-container { width: 180px; height: 180px; }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <header class="header">
-        <img src="YOUR_PHOTO_URL.jpg" alt="Анастасия Филимонова" class="profile-photo">
-        <h1>ФИЛИМОНОВА АНАСТАСИЯ [cite: 1]</h1>
-        <h2>Операционный директор / Руководитель проектов [cite: 2]</h2>
+<div class="wrapper">
+    <header>
+        <div class="photo-container">
+            <img src="photo.jpg" alt="Анастасия Филимонова">
+        </div>
+        <h1>Анастасия Филимонова</h1>
+        <div class="subtitle">Операционный директор &bull; Руководитель проектов</div>
         <div class="contacts">
-            <a href="tel:+79623746710">+7 (962) 374-67-10 [cite: 3]</a>
-            <a href="mailto:anastasiya.fil1monova@yandex.ru">anastasiya.fil1monova@yandex.ru [cite: 3]</a>
-            <a href="https://t.me/anastasiya_feel">Telegram: @anastasiya_feel [cite: 3]</a>
+            <a href="tel:+79623746710">+7 (962) 374-67-10</a>
+            <a href="mailto:anastasiya.fil1monova@yandex.ru">anastasiya.fil1monova@yandex.ru</a>
+            <a href="https://t.me/anastasiya_feel" target="_blank">Telegram: @anastasiya_feel</a>
         </div>
     </header>
 
     <section>
-        <h3>Информация обо мне</h3>
-        
-        <details>
-            <summary>Профессиональный профиль</summary>
-            <p>Руководитель с опытом более 6 лет в операционном управлении, запуске проектов «под ключ» и масштабировании бизнеса[cite: 6]. Выстраиваю системы, которые повышают ключевые метрики: увеличила клиентскую базу на 40%, сократила текучесть на 27%, оптимизировала ФОТ на 15%[cite: 7]. Сочетаю системное мышление и креативный подход для создания эффективных процессов в проектах на стыке творчества, технологий и сервиса[cite: 8]. Адаптивна к изменениям, работаю в условиях VUCA[cite: 9].</p>
-            <p>Увлекаюсь гастрономией, имею опыт работы в проекте, связанном с кондитерским производством[cite: 94]. Привлекают проекты на стыке творчества и бизнеса, где важно выстроить систему, приносящую стабильный результат[cite: 95]. Проживание: Москва - Санкт-Петербург, готова к переезду и командировкам[cite: 4].</p>
-        </details>
+        <h3 class="section-title">Professional Profile</h3>
+        <div class="accordion-wrapper">
+            <details>
+                <summary>Обо мне</summary>
+                <div class="details-content">
+                    <p>Руководитель с опытом более 6 лет в операционном управлении, запуске проектов «под ключ» и масштабировании бизнеса. Выстраиваю системы, которые повышают ключевые метрики: увеличила клиентскую базу на 40%, сократила текучесть на 27%, оптимизировала ФОТ на 15%.</p>
+                    <p>Сочетаю системное мышление и креативный подход для создания эффективных процессов в проектах на стыке творчества, технологий и сервиса. Адаптивна к изменениям, работаю в условиях VUCA. Особый интерес питаю к проектам, связанным с гастрономией, созданием продукта и клиентского опыта.</p>
+                </div>
+            </details>
 
-        <details>
-            <summary>Ключевые компетенции</summary>
-            <ul>
-                <li>Операционное управление и масштабирование[cite: 98].</li>
-                <li>Запуск новых продуктов и направлений (от идеи до реализации)[cite: 99].</li>
-                <li>Управление командами (до 30+ человек) и развитие сотрудников[cite: 99].</li>
-                <li>Бюджетирование, финконтроль, оптимизация издержек[cite: 99].</li>
-                <li>Маркетинговая стратегия и управление рекламным бюджетом[cite: 100].</li>
-                <li>Построение систем и регламентов (CRM, отчетность, документооборот)[cite: 101].</li>
-                <li>Антикризисное управление и адаптивность[cite: 102].</li>
-            </ul>
-        </details>
+            <details>
+                <summary>Ключевые компетенции</summary>
+                <div class="details-content">
+                    <ul>
+                        <li>Операционное управление и масштабирование</li>
+                        <li>Запуск новых продуктов и направлений (от идеи до реализации)</li>
+                        <li>Управление командами (до 30+ человек) и развитие сотрудников</li>
+                        <li>Бюджетирование, финконтроль, оптимизация издержек</li>
+                        <li>Маркетинговая стратегия и управление рекламным бюджетом</li>
+                        <li>Построение систем и регламентов (CRM, отчетность, документооборот)</li>
+                        <li>Антикризисное управление и ориентация на клиентский опыт</li>
+                    </ul>
+                </div>
+            </details>
 
-        <details>
-            <summary>Образование и навыки</summary>
-            <p><strong>Образование:</strong> Финансовый университет при Правительстве РФ (Москва)[cite: 91]. Специальность: Экономика и бизнес-технологии / Бизнес-информатика[cite: 92].</p>
-            <p><strong>Языки:</strong> Русский (родной), Английский (В1 - Intermediate)[cite: 105].</p>
-            <p><strong>IT-инструменты:</strong> Уверенный пользователь CRM, Google Analytics, Excel, Google Sheets, Trello, Notion, Figma[cite: 106]. Владение Al-инструментами: ChatGPT, Midjourney, Notion Al[cite: 106].</p>
-        </details>
+            <details>
+                <summary>Образование и навыки</summary>
+                <div class="details-content">
+                    <p><strong>Образование:</strong> Финансовый университет при Правительстве РФ (Москва). Специальность: Экономика и бизнес-технологии / Бизнес-информатика.</p>
+                    <p><strong>Инструменты:</strong> Уверенный пользователь CRM, Google Analytics, Excel, Google Sheets, Trello, Notion, Figma. Владение Al-инструментами: ChatGPT, Midjourney, Notion Al.</p>
+                    <p><strong>Языки:</strong> Русский (родной), Английский (В1 - Intermediate).</p>
+                </div>
+            </details>
+        </div>
     </section>
 
     <section>
-        <h3>Ключевые достижения (Кейсы) [cite: 11]</h3>
+        <h3 class="section-title">Selected Cases</h3>
         <div class="cases-grid">
-            <div class="card">
-                <h4>Масштабирование проекта [cite: 13]</h4>
-                <p>За 8 месяцев увеличила активную клиентскую базу на 40% (с 6 000 до 10 000) и лидогенерацию на 44% за счет органического прироста, запуска бесплатного Telegram-канала (рост до 40 000 подписчиков) и геймификации[cite: 13].</p>
+            <div class="case-card">
+                <h4>Масштабирование проекта</h4>
+                <p>За 8 месяцев увеличила активную клиентскую базу на 40% (до 10 000) и лидогенерацию на 44% за счет органического прироста, запуска бесплатного Telegram-канала (рост до 40 000 подписчиков) и внедрения геймификации.</p>
             </div>
-            <div class="card">
-                <h4>Запуск IT-продукта [cite: 14]</h4>
-                <p>Управляла полным циклом создания приложения в Telegram[cite: 14]. Результат: повышение удержания пользователей на 15%, увеличение срока жизни клиента с 3 до 6 месяцев, трансформация проекта в экосистему[cite: 15].</p>
+            <div class="case-card">
+                <h4>Запуск IT-продукта</h4>
+                <p>Управляла полным циклом создания приложения в Telegram: от идеи до внедрения и координации разработчиков. Повысила удержание пользователей на 15% и увеличила срок жизни клиента в 2 раза.</p>
             </div>
-            <div class="card">
-                <h4>Оптимизация процессов [cite: 16]</h4>
-                <p>Внедрила систему КРІ и отчетности, что позволило оптимизировать ФОТ на 15% за счет перевода сотрудников с окладов на мотивационную схему[cite: 16].</p>
+            <div class="case-card">
+                <h4>Оптимизация ФОТ</h4>
+                <p>Внедрила систему КРІ и отчетности. Оптимизировала ФОТ на 15% за счет перевода сотрудников с окладов на мотивационную схему, повысив их ответственность.</p>
             </div>
-            <div class="card">
-                <h4>Запуск с нуля [cite: 18]</h4>
-                <p>Обеспечила полный цикл запуска образовательного продукта за полтора месяца: поиск эксперта, формирование команды (15 чел.) и построение отделов[cite: 18]. Выручка: 3 млн Р в первый запуск[cite: 19].</p>
+            <div class="case-card">
+                <h4>Запуск с нуля</h4>
+                <p>Обеспечила полный цикл запуска образовательного продукта за 1.5 месяца: от поиска эксперта до построения отделов (команда 15 чел). Выручка составила 3 млн ₽ в первый запуск.</p>
             </div>
         </div>
     </section>
 
     <section>
-        <h3>Опыт работы [cite: 22]</h3>
+        <h3 class="section-title">Experience</h3>
+        <div class="experience-list">
+            
+            <div class="job-item">
+                <span class="job-dates">Март 2025 — Настоящее время</span>
+                <h4 class="job-company">Secret Chat от Pauline Cake</h4>
+                <div class="job-role">Операционный директор / Руководитель проектов</div>
+                <div class="job-desc">
+                    <ul>
+                        <li>Выделила проект из головной структуры в независимую единицу, перестроила команду, организовала аудит и документооборот.</li>
+                        <li>Управляю операционной деятельностью команды из 17 человек (разработка, маркетинг, техподдержка, продукт).</li>
+                        <li>Реализовала продукт (приложение в Telegram) от идеи до внедрения: рост удержания на 15%, увеличение LTV с 3 до 6 месяцев.</li>
+                        <li>Веду учет совместно с бухгалтером, принимаю решения по ФОТ и операционным расходам (бюджет 1-2 млн ₽/мес).</li>
+                    </ul>
+                </div>
+            </div>
 
-        <div class="job">
-            <h4>Secret Chat от Pauline Cake [cite: 24]</h4>
-            <div class="role">Руководитель проектов / Операционный директор [cite: 26]</div>
-            <div class="dates">Март 2025 - настоящее время (1 год) | Онлайн-проект [cite: 23, 25]</div>
-            <ul>
-                <li>Выделила проект из головной структуры, перестроила команду, организовала юридический и бухгалтерский аудит[cite: 30, 32]. Управляю операционной деятельностью команды из 17 человек[cite: 33].</li>
-                <li>Реализовала проект запуска приложения в Telegram от идеи до внедрения[cite: 37, 38]. Рост удержания на 15%, увеличение LTV с 3 до 6 месяцев[cite: 39].</li>
-                <li>Реализовала стратегию привлечения трафика. За 8 месяцев активная клиентская база выросла на 40%, лиды - на 45%[cite: 42, 44].</li>
-                <li>Совместно с бухгалтером веду учет, принимаю решения по ФОТ и операционным расходам (ежемесячный бюджет 1-2 млн Р)[cite: 46].</li>
-            </ul>
-        </div>
+            <div class="job-item">
+                <span class="job-dates">Апрель 2024 — Май 2025</span>
+                <h4 class="job-company">ИП Соколовский А. С.</h4>
+                <div class="job-role">Руководитель по запуску новых направлений</div>
+                <div class="job-desc">
+                    <ul>
+                        <li>Разрабатывала PR-стратегии, управляла рекламным бюджетом до $20 000 в месяц.</li>
+                        <li>Управляла проектами «под ключ», выстроила отдел разработки, перенеся процессы от подрядчиков в собственное управление.</li>
+                        <li>Работала с инфлюенсерами, разрабатывала и внедряла реферальные программы.</li>
+                    </ul>
+                </div>
+            </div>
 
-        <div class="job">
-            <h4>ИП Соколовский Александр Сергеевич [cite: 49]</h4>
-            <div class="role">Руководитель по запуску новых направлений и тестированию гипотез [cite: 50]</div>
-            <div class="dates">Апрель 2024 - Май 2025 (1 год 2 месяца) [cite: 48]</div>
-            <ul>
-                <li>Разрабатывала PR-стратегии, управляла рекламным бюджетом до $20 000 в месяц[cite: 53, 54].</li>
-                <li>Управляла проектами «под ключ», выстроила отдел разработки[cite: 55, 57].</li>
-                <li>Работала с инфлюенсерами, разрабатывала реферальные программы[cite: 61, 62].</li>
-            </ul>
-        </div>
+            <div class="job-item">
+                <span class="job-dates">Апрель 2024 — Сентябрь 2024</span>
+                <h4 class="job-company">Институт психологии Инны Мирной</h4>
+                <div class="job-role">Исполнительный директор (консалтинг)</div>
+                <div class="job-desc">
+                    <ul>
+                        <li>Провела анализ ситуации, внедрила систему аналитики и КΡΙ для всех отделов.</li>
+                        <li>Оптимизировала ФОТ на 15%, перевела сотрудников на мотивационную схему.</li>
+                        <li>Пересобрала команду из 15 человек, выстроила прозрачные операционные процессы.</li>
+                    </ul>
+                </div>
+            </div>
 
-        <div class="job">
-            <h4>Институт семейной психологии Инны Мирной [cite: 64]</h4>
-            <div class="role">Исполнительный директор (консалтинговый проект) [cite: 65]</div>
-            <div class="dates">Апрель 2024 - Сентябрь 2024 (6 месяцев) [cite: 64]</div>
-            <ul>
-                <li>Провела анализ текущей ситуации, внедрила систему аналитики и КΡΙ для всех отделов[cite: 69, 71].</li>
-                <li>Оптимизировала фонд оплаты труда на 15%[cite: 72].</li>
-                <li>Пересобрала команду из 15 человек, выстроила прозрачные операционные процессы и регламенты[cite: 74, 75].</li>
-            </ul>
-        </div>
+            <div class="job-item">
+                <span class="job-dates">Январь 2023 — Май 2024</span>
+                <h4 class="job-company">Партнерский запуск (Фриланс)</h4>
+                <div class="job-role">Руководитель проекта</div>
+                <div class="job-desc">
+                    <ul>
+                        <li>Осуществила полный цикл запуска образовательного продукта с нуля.</li>
+                        <li>Собрала и координировала команду из 15 человек.</li>
+                        <li>Обеспечила выручку запуска в размере 3 млн ₽, оперативно изменив стратегию в первые дни продаж.</li>
+                    </ul>
+                </div>
+            </div>
 
-        <div class="job">
-            <h4>Партнерский запуск в продюсировании [cite: 77]</h4>
-            <div class="role">Руководитель проекта [cite: 78]</div>
-            <div class="dates">Январь 2023 - Май 2024 (1 год 5 месяцев) [cite: 76]</div>
-            <ul>
-                <li>Осуществила полный цикл запуска образовательного продукта с нуля[cite: 80, 82].</li>
-                <li>Собрала и координировала команду из 15 человек[cite: 83].</li>
-                <li>Обеспечила выручку запуска в размере 3 млн Р[cite: 84].</li>
-            </ul>
-        </div>
+            <div class="job-item">
+                <span class="job-dates">2021 — 2023</span>
+                <h4 class="job-company">Различные проекты</h4>
+                <div class="job-role">Руководитель HR-направления</div>
+                <div class="job-desc">
+                    <ul>
+                        <li>Сократила текучесть кадров на 27% за счет внедрения двухэтапного онбординга.</li>
+                        <li>Создавала системы адаптации, мотивации и обучения персонала.</li>
+                    </ul>
+                </div>
+            </div>
 
-        <div class="job">
-            <h4>Различные компании [cite: 85]</h4>
-            <div class="role">HR-менеджер / Руководитель HR-направления [cite: 85]</div>
-            <div class="dates">2021-2023 [cite: 85]</div>
-            <ul>
-                <li>Сократила текучесть кадров на 27% за счет внедрения двухэтапного онбординга и системы парт-тайм[cite: 86].</li>
-                <li>Закрывала сложные позиции, создавала системы адаптации, мотивации и обучения[cite: 88, 89].</li>
-            </ul>
         </div>
     </section>
 </div>
