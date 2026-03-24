@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Филимонова Анастасия — Операционный директор</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #F8F9FA;
+            color: #333333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: #FFFFFF;
+            padding: 50px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+        }
+        /* Шапка визитки */
+        .header {
+            text-align: center;
+            border-bottom: 1px solid #EBEBEB;
+            padding-bottom: 40px;
+            margin-bottom: 40px;
+        }
+        .profile-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 25px;
+            border: 4px solid #F0F0F0;
+        }
+        h1 {
+            font-size: 32px;
+            margin: 0 0 10px 0;
+            font-weight: 600;
+            color: #1A1A1A;
+            letter-spacing: 1px;
+        }
+        h2 {
+            font-size: 16px;
+            color: #7A8B99;
+            font-weight: 500;
+            margin: 0 0 25px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .contacts {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .contacts a {
+            color: #4A6984;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 16px;
+            background-color: #F8F9FA;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        .contacts a:hover {
+            background-color: #4A6984;
+            color: #FFFFFF;
+        }
+        /* Основные секции */
+        h3 {
+            font-size: 24px;
+            color: #2C3E50;
+            margin-top: 50px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+        }
+        h3::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 24px;
+            background-color: #C5A880; /* Премиальный золотисто-бежевый акцент */
+            margin-right: 12px;
+            border-radius: 2px;
+        }
+        /* Раскрывающиеся списки (Обо мне) */
+        details {
+            background: #FFFFFF;
+            border: 1px solid #EAEAEA;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            padding: 18px 20px;
+            transition: box-shadow 0.3s ease;
+        }
+        details:hover {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+        }
+        summary {
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            outline: none;
+            color: #2C3E50;
+            list-style: none; /* Убираем стандартный треугольник */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        summary::-webkit-details-marker {
+            display: none;
+        }
+        summary::after {
+            content: '+';
+            font-size: 20px;
+            color: #C5A880;
+        }
+        details[open] summary::after {
+            content: '−';
+        }
+        details p, details ul {
+            margin-top: 15px;
+            color: #555;
+            line-height: 1.7;
+        }
+        /* Карточки кейсов */
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: #FAFAFA;
+            border: 1px solid #EFEFEF;
+            padding: 25px;
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+        .card h4 {
+            margin: 0 0 15px 0;
+            font-size: 18px;
+            color: #2C3E50;
+        }
+        /* Опыт работы */
+        .job {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #F0F0F0;
+        }
+        .job:last-child {
+            border-bottom: none;
+        }
+        .job h4 {
+            margin: 0 0 5px 0;
+            font-size: 20px;
+            color: #1A1A1A;
+        }
+        .job .role {
+            font-weight: 600;
+            color: #4A6984;
+            margin-bottom: 10px;
+        }
+        .job .dates {
+            font-size: 13px;
+            color: #888;
+            margin: 0 0 15px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .job ul {
+            padding-left: 20px;
+            color: #444;
+        }
+        .job li {
+            margin-bottom: 10px;
+        }
+        @media (max-width: 600px) {
+            .container { padding: 30px 20px; }
+            .profile-photo { width: 140px; height: 140px; }
+            h1 { font-size: 26px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header class="header">
+        <img src="YOUR_PHOTO_URL.jpg" alt="Анастасия Филимонова" class="profile-photo">
+        <h1>ФИЛИМОНОВА АНАСТАСИЯ [cite: 1]</h1>
+        <h2>Операционный директор / Руководитель проектов [cite: 2]</h2>
+        <div class="contacts">
+            <a href="tel:+79623746710">+7 (962) 374-67-10 [cite: 3]</a>
+            <a href="mailto:anastasiya.fil1monova@yandex.ru">anastasiya.fil1monova@yandex.ru [cite: 3]</a>
+            <a href="https://t.me/anastasiya_feel">Telegram: @anastasiya_feel [cite: 3]</a>
+        </div>
+    </header>
+
+    <section>
+        <h3>Информация обо мне</h3>
+        
+        <details>
+            <summary>Профессиональный профиль</summary>
+            <p>Руководитель с опытом более 6 лет в операционном управлении, запуске проектов «под ключ» и масштабировании бизнеса[cite: 6]. Выстраиваю системы, которые повышают ключевые метрики: увеличила клиентскую базу на 40%, сократила текучесть на 27%, оптимизировала ФОТ на 15%[cite: 7]. Сочетаю системное мышление и креативный подход для создания эффективных процессов в проектах на стыке творчества, технологий и сервиса[cite: 8]. Адаптивна к изменениям, работаю в условиях VUCA[cite: 9].</p>
+            <p>Увлекаюсь гастрономией, имею опыт работы в проекте, связанном с кондитерским производством[cite: 94]. Привлекают проекты на стыке творчества и бизнеса, где важно выстроить систему, приносящую стабильный результат[cite: 95]. Проживание: Москва - Санкт-Петербург, готова к переезду и командировкам[cite: 4].</p>
+        </details>
+
+        <details>
+            <summary>Ключевые компетенции</summary>
+            <ul>
+                <li>Операционное управление и масштабирование[cite: 98].</li>
+                <li>Запуск новых продуктов и направлений (от идеи до реализации)[cite: 99].</li>
+                <li>Управление командами (до 30+ человек) и развитие сотрудников[cite: 99].</li>
+                <li>Бюджетирование, финконтроль, оптимизация издержек[cite: 99].</li>
+                <li>Маркетинговая стратегия и управление рекламным бюджетом[cite: 100].</li>
+                <li>Построение систем и регламентов (CRM, отчетность, документооборот)[cite: 101].</li>
+                <li>Антикризисное управление и адаптивность[cite: 102].</li>
+            </ul>
+        </details>
+
+        <details>
+            <summary>Образование и навыки</summary>
+            <p><strong>Образование:</strong> Финансовый университет при Правительстве РФ (Москва)[cite: 91]. Специальность: Экономика и бизнес-технологии / Бизнес-информатика[cite: 92].</p>
+            <p><strong>Языки:</strong> Русский (родной), Английский (В1 - Intermediate)[cite: 105].</p>
+            <p><strong>IT-инструменты:</strong> Уверенный пользователь CRM, Google Analytics, Excel, Google Sheets, Trello, Notion, Figma[cite: 106]. Владение Al-инструментами: ChatGPT, Midjourney, Notion Al[cite: 106].</p>
+        </details>
+    </section>
+
+    <section>
+        <h3>Ключевые достижения (Кейсы) [cite: 11]</h3>
+        <div class="cases-grid">
+            <div class="card">
+                <h4>Масштабирование проекта [cite: 13]</h4>
+                <p>За 8 месяцев увеличила активную клиентскую базу на 40% (с 6 000 до 10 000) и лидогенерацию на 44% за счет органического прироста, запуска бесплатного Telegram-канала (рост до 40 000 подписчиков) и геймификации[cite: 13].</p>
+            </div>
+            <div class="card">
+                <h4>Запуск IT-продукта [cite: 14]</h4>
+                <p>Управляла полным циклом создания приложения в Telegram[cite: 14]. Результат: повышение удержания пользователей на 15%, увеличение срока жизни клиента с 3 до 6 месяцев, трансформация проекта в экосистему[cite: 15].</p>
+            </div>
+            <div class="card">
+                <h4>Оптимизация процессов [cite: 16]</h4>
+                <p>Внедрила систему КРІ и отчетности, что позволило оптимизировать ФОТ на 15% за счет перевода сотрудников с окладов на мотивационную схему[cite: 16].</p>
+            </div>
+            <div class="card">
+                <h4>Запуск с нуля [cite: 18]</h4>
+                <p>Обеспечила полный цикл запуска образовательного продукта за полтора месяца: поиск эксперта, формирование команды (15 чел.) и построение отделов[cite: 18]. Выручка: 3 млн Р в первый запуск[cite: 19].</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h3>Опыт работы [cite: 22]</h3>
+
+        <div class="job">
+            <h4>Secret Chat от Pauline Cake [cite: 24]</h4>
+            <div class="role">Руководитель проектов / Операционный директор [cite: 26]</div>
+            <div class="dates">Март 2025 - настоящее время (1 год) | Онлайн-проект [cite: 23, 25]</div>
+            <ul>
+                <li>Выделила проект из головной структуры, перестроила команду, организовала юридический и бухгалтерский аудит[cite: 30, 32]. Управляю операционной деятельностью команды из 17 человек[cite: 33].</li>
+                <li>Реализовала проект запуска приложения в Telegram от идеи до внедрения[cite: 37, 38]. Рост удержания на 15%, увеличение LTV с 3 до 6 месяцев[cite: 39].</li>
+                <li>Реализовала стратегию привлечения трафика. За 8 месяцев активная клиентская база выросла на 40%, лиды - на 45%[cite: 42, 44].</li>
+                <li>Совместно с бухгалтером веду учет, принимаю решения по ФОТ и операционным расходам (ежемесячный бюджет 1-2 млн Р)[cite: 46].</li>
+            </ul>
+        </div>
+
+        <div class="job">
+            <h4>ИП Соколовский Александр Сергеевич [cite: 49]</h4>
+            <div class="role">Руководитель по запуску новых направлений и тестированию гипотез [cite: 50]</div>
+            <div class="dates">Апрель 2024 - Май 2025 (1 год 2 месяца) [cite: 48]</div>
+            <ul>
+                <li>Разрабатывала PR-стратегии, управляла рекламным бюджетом до $20 000 в месяц[cite: 53, 54].</li>
+                <li>Управляла проектами «под ключ», выстроила отдел разработки[cite: 55, 57].</li>
+                <li>Работала с инфлюенсерами, разрабатывала реферальные программы[cite: 61, 62].</li>
+            </ul>
+        </div>
+
+        <div class="job">
+            <h4>Институт семейной психологии Инны Мирной [cite: 64]</h4>
+            <div class="role">Исполнительный директор (консалтинговый проект) [cite: 65]</div>
+            <div class="dates">Апрель 2024 - Сентябрь 2024 (6 месяцев) [cite: 64]</div>
+            <ul>
+                <li>Провела анализ текущей ситуации, внедрила систему аналитики и КΡΙ для всех отделов[cite: 69, 71].</li>
+                <li>Оптимизировала фонд оплаты труда на 15%[cite: 72].</li>
+                <li>Пересобрала команду из 15 человек, выстроила прозрачные операционные процессы и регламенты[cite: 74, 75].</li>
+            </ul>
+        </div>
+
+        <div class="job">
+            <h4>Партнерский запуск в продюсировании [cite: 77]</h4>
+            <div class="role">Руководитель проекта [cite: 78]</div>
+            <div class="dates">Январь 2023 - Май 2024 (1 год 5 месяцев) [cite: 76]</div>
+            <ul>
+                <li>Осуществила полный цикл запуска образовательного продукта с нуля[cite: 80, 82].</li>
+                <li>Собрала и координировала команду из 15 человек[cite: 83].</li>
+                <li>Обеспечила выручку запуска в размере 3 млн Р[cite: 84].</li>
+            </ul>
+        </div>
+
+        <div class="job">
+            <h4>Различные компании [cite: 85]</h4>
+            <div class="role">HR-менеджер / Руководитель HR-направления [cite: 85]</div>
+            <div class="dates">2021-2023 [cite: 85]</div>
+            <ul>
+                <li>Сократила текучесть кадров на 27% за счет внедрения двухэтапного онбординга и системы парт-тайм[cite: 86].</li>
+                <li>Закрывала сложные позиции, создавала системы адаптации, мотивации и обучения[cite: 88, 89].</li>
+            </ul>
+        </div>
+    </section>
+</div>
+
+</body>
+</html>
